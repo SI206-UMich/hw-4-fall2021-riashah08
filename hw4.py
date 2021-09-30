@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import unittest
 
 # The Customer class
@@ -28,7 +28,8 @@ class Customer:
     # Submit_order takes a cashier, a stall and an amount as parameters, 
     # it deducts the amount from the customer’s wallet and calls the receive_payment method on the cashier object
     def submit_order(self, cashier, stall, amount): 
-        pass
+        self.wallet -= amount
+        self.cashier.receive_payment(stall, amount)
 
     # The __str__ method prints the customer's information.    
     def __str__(self):
@@ -72,7 +73,36 @@ class Cashier:
 ## Complete the Stall class here following the instructions in HW_4_instructions_rubric
 class Stall:
     
-    pass
+    def __init__(self, name, cost = 7, earnings = 0): 
+        self.name = name 
+        self.cost = cost
+        self.earnings = earnings
+        self.inventory = inventory
+    
+    def process_order(self, name, quantity):
+        for k,v in self.inventory.items():
+            if k == name and v > quantity:
+                self.inventory[v] -= quantity
+
+    def has_item(self, name, quantity):
+        for k,v in inventory.items():
+            if k == name and v > quantity:
+                return True
+            else:
+                return False
+    
+    def stock_up(self, name, quantity):
+        for k,v in inventory.items():
+            if k == name:
+                inventory[v] += quantity
+            else: 
+                inventory[name] = quantity
+
+    def compute_cost(self, quantity):
+        total = quantity*self.cost 
+        return total
+    def __str__(self):
+        return "Hello, we are " + self.name + ". This is the current menu " + inventory.keys() + ". We charge $" + self.cost + " per item. We have $" + self.compute_cost + " in total."  
 
 
 class TestAllMethods(unittest.TestCase):
